@@ -1,0 +1,94 @@
+\section{\textit{Leveraging Cloud Computing} Dalam Kota Pintar}
+
+Tidak menjadikan materi yang diajarkan sebagai acuan, namun secara murni hanya menjadikan proyek akhir dari program \textbf{Bangkit 2022} sebagai topik persoalan yang akan dibahas pada bagian ini, mengingat seluruh materi dan ilmu yang dipelajari memiliki kulminasi pada proyek akhir.
+
+\subsection{Kriminalitas dan COVID-19}
+
+Pernyataan masalah dimulai dengan peningkatan kasus kejahatan jalanan pada beberapa daerah di Indonesia \citep{IncreaseCrimeUnoff}, namun perlu dicatat bahwa peningkatan ini tidak merata karena beragam variabel yang bermain di dalamnya \citep{indonesiaCrimeInconclusive}. Inkonklusifitas tersebut semakin terlihat ketika melihat kondisi negara lain contohnya saja Amerika yang mengalami penurunan yang cukup drastis \citep{CovidAndCrime}.
+
+Apa pun hasil analisanya, satu yang dapat disepakati adalah kasus kriminalitas dapat terjadi kapan pun dan di mana pun. Topik utama yang menjadi fokus persoalan adalah maraknya kasus \textit{street crime} yang sering terjadi saat pandemi COVID-19 meraja lela, khususnya pada ibu kota Indonesia Jakarta. Ketika pandemi tidak ada kesulitan untuk mencari tajuk berita pembegalan, perampasan, penodongan, dan lain-lain. Menyadarkan kita bahwa hal-hal seperti itu dapat terjadi kapan pun ketika seseorang sedang bepergian dari rumah ke tempat kerja, atau tempat lainnya.
+
+Pernyataan di atas merupakan salah satu masalah yang cukup menarik untuk dihadapi, adakah suatu cara untuk mengintegrasikan suatu layanan yang ditenagai oleh komunitas suatu kota dan dibantu dengan data yang telah dimiliki oleh kota tersebut untuk mengatasi masalah ini. Keuntungan yang didapatkan memiliki potensial besar untuk merubah hidup masyarakat kota, untuk bepergian secara aman dan juga nyaman.
+
+\subsection{Proses}
+
+Untuk merancang sebuah solusi yang cukup \textit{feasible}, perlu dilakukan analisa mengenai fitur yang akan dikembangkan yang pada akhirnya dapat mewujudkan tujuan yang diharapkan. Mengambil inspirasi dari digitalisasi sistem kesehatan, yaitu adanya unsur "reaktif" dan juga "preventif", aplikasi akan mendasari fungsi utamanya dengan dua istilah di atas.
+
+\begin{itemize}
+    \item Reaktif
+    \item[] Mengacu kepada sistem \textit{countermeasure}, atau apa yang harus dilakukan oleh aplikasi jika terjadi tindak kriminalitas yang dialami pengguna. Hal ini memang cukup terbatas dimulai dari, akses data yang dimiliki oleh aplikasi. Karena aplikasi tidak memiliki "mata" dan "telinga" namun memiliki pengetahuan posisi di mana pengguna berada, maka fitur reaktif ini dapat dimplementasikan ke dalam sistem yang akan mendeteksi jika seseorang keluar dari kebiasaan atau lokasi yang sering dikunjungi (dengan \textit{triage} tentunya).
+    \item Preventif
+    \item[] Mengacu kepada sistem atau layanan yang dapat diberikan kepada pengguna untuk memberikan informasi bersih yang sudah diolah, untuk mengidentifikasi daerah yang berbahaya, diikuti dengan fitur pemilihan rute (yang akan digunakan jika pengguna akan melakukan perjalanan dari poin a ke b) yang memiliki algoritma khusus yang akan memilih rute berdasarkan hasil analisa di tahap pertama.
+\end{itemize}
+
+Perlu dijelaskan bahwa pendefisian (kami) mengenai preventif adalah sebuah cara atau sistem yang dapat memberitahu pengguna sebelumnya terhadap kondisi yang terfokus pada jumlah, tipe, dan keseringan kasus kriminalitas yang ada. Sedangkan reaktif, merupakan sebuah \textit{countermeasure} yang akan dilakukan jika sistem preventif gagal melindungi.
+
+Dari kedua gambaran di atas dapat tergambar sedikit mengenai arsitektur sistem dan aplikasi yang akan dibuat, beserta data yang sekiranya dibutuhkan. Untuk mengimplementasi sistem preventif, diperlukan sebuah data yang memuat batasan kecamatan dari daerah yang akan digunakan untuk uji coba (dalam hal ini Jakarta), statistik kasus kriminalitas yang terjadi di daerah yang bersangkutan dan sebuah sistem \textit{routing} guna membuat sistem \textit{routing} preventif yang dimaksud.
+
+Kemudian penentuan lingkup, menganalisa hal hal tadi untuk mengembangkan solusi reaktif pada seluruh wilayah yang ada di indonesia, hampir mustahil dilakukan dengan sumber yang sangat terbatas, sehingga pemilihan lingkup menjadi salah satu faktor penting. Jika ruang lingkup yang terlalu kecil dapat menyebabkan hasil analisa terlalu bias karena hanya didasari dengan data yang terbatas, dan juga pada akhirnya tidak berguna karena pengguna yang dapat merasakan manfaat sistem hanya akan dirasakan pada zona yang cukup kecil. Namun, jika terlalu besar, data geografis dan analisa yang perlu dilakukan sangat-amat besar jumlahnya, sehingga mengutip pernyataan sebelumnya lagi-lagi akan sangat-amat sulit dilakukan dengan sumber daya yang sangat terbatas.
+
+Data statistik merupakan sebuah masalah yang cukup sulit dihadapi, mengingat berdasarkan data \textit{BPS} yang berupa total kasus kriminalitas tidak memberikan lokasi persis terjadinya sebuah kejahatan (patut dimaklumi karena hal ini dirasa cukup sensitif) dan melihat data tingkat kriminalitas luar hal ini juga merupakan masalah. \textbf{Data komprehensif mengenai jumlah kejahatan, lokasi terjadi berdasarkan distrik, diikuti dengan jenis kejahatan cukup mudah ditemukan}, yang menjadi masalah utamanya adalah persebaran \textit{exact} kejahatan tersebut (yang berbentuk \textit{latitude, longitude}), sehingga untuk menyebarkannya perlu dilakukan simulasi yang tidak mencerminkan keadaan sebenarnya (yang juga menjadi \textit{concern} utama tim).
+
+Lalu pembuatan algoritma khusus yang turut terhadap data analisa nantinya pula cukup sulit dilakukan, mengingat hanya ada dua cara untuk melakukannya membuat sebuah \textit{routing system} dari nol, yang di mana hal ini adalah tugas yang cukup monumental pengerjaannya atau opsi lain yang jauh lebih memungkinkan adalah memodifikasi konfigurasi dari \textit{routing system} yang sudah ada.
+
+Terakhir adalah pengimplementasian sistem reaktif, tim memutuskan bahwa implementasi yang paling mungkin diambil adalah sebuah \textit{habit tracker}. Dengan memanfaatkan \textit{machine learning} untuk memperkirakan rute yang biasa diambil oleh pengguna dan juga meramal posisi selanjutnya dari pengguna. Hal ini memunculkan beberapa masalah yang cukup sulit dihadapi mulai dari:
+\begin{enumerate}
+    \item Keamanan data pengguna, karena data yang dihadapi dirasa cukup sensitif dan akan memiliki dampak kepada pengguna jika adanya kebocoran data tanpa adanya sistem enkripsi.
+    \item Arsitektur model yang berada pada tingkat lanjut, harus dapat menyesuaikan dengan kebiasaan masing-masing individu yang sangat berbeda pola-nya.
+\end{enumerate}
+
+\subsection{Perancangan Solusi}
+
+Mendasarkan solusi berdasarkan subbab di atas, yang jika disimpulkan memiliki dua fitur utama, fitur preventif yang terdiri dari dua fitur utama \textit{overview} statistik kriminalitas yang akan diolah dengan \textit{clustering machine learning} yang diharapkan dapat mendeteksi \textbf{crime hotspot}\citep{CrimeHotspotsNIJ} yang ada dalam ruang lingkup kota yang digunakan. Sistem \textit{routing} yang akan mengkomplemen performa kerja sistem preventif, yang akan secara aktif bekerja merekomendasikan rute teraman yang dapat diambil oleh pengguna dan terakhir sistem preventif yang hanya terdiri dari satu fitur, yaitu \textit{habit tracking}.
+
+\subsection{Safe Route}
+
+Sebuah hasil dari perancangan solusi pencegahan kriminalitas secara \textit{preventive} dan \textit{reactive}, dengan memanfaatkan tiga fitur utama yang dapat mengkomplemen satu sama lain untuk mencapai satu tujuan yang diharapkan, dapat bekerja sebagai pencegahan dan \textit{countermeasure} jika hal kasus kriminalitas benar terjadi terhadap individu yang menggunakan aplikasi ini, dan bekerja sebagai layanan yang dapat memperkuat kualitas hidup dalam perkotaan dengan sistem preventifnya yang ditenagai oleh komunitas itu sendiri.
+
+Sesuai dengan perancangan solusi yang telah dijabarkan pada subbab sebelum-sebelumnya, implementasi yang didapat adalah berupa aplikasi Android yang ditenagai dengan komponen \textit{backend} pendukung melewati \textbf{Google Cloud Platform} dan komponen kecerdasan artifisial yang diimplementasikan dengan \textbf{scikit learn} dan \textbf{TensorFlow}. Detail komprehensif adalah sebagai berikut:
+\begin{enumerate}
+    \item Sistem \textit{overview statistik} dengan \textit{overlay} yang disediakan oleh \textbf{Google Maps}, dan data \textbf{Open Street Maps Jakarta} untuk memberikan \textit{overlay} kecamatan.
+    \item Sistem \textit{routing} yang untuk sementara digantikan dengan sistem navugasi \textbf{Google Maps}, karena adanya kendala dalam melakukan pengaturan server untuk menyesuaikan dengan \textit{geofence} yang telah dihasilkan.
+    \item Sistem pendukung \textit{clustering} yang dilakukan sebagai \textit{job} pada proses \textit{ETL Pipeline}, yang hasil transformasi datanya digunakan pada fitur \\textit{overview} statistik. Serta pengimplementasian \textit{habit tracker} dengan \textit{TensorFlow} dengan kapabilitas terbatas.
+\end{enumerate}
+Hasil akhir sudah dapat digunakan, namun masih ada rasa ragu karena penyebaran data yang masih dilakukan secara artifisial, untuk langkah selanjutnya yang dapat diambil dapat dilakukan dengan terlebih dahulu melakukan riset terhadap penyebaran kasus kriminalitas di Indonesia, dan lalu dapat dilakukan \textit{pilot testing} pada kota Jakarta dengan sedikit perubahan pada sistem dan aplikasi.
+
+\section{Pengembangan Safe Route}
+
+Mengacu kepada deskripsi pekerjaan, serta subbab di atas, yang bertujuan untuk mengaitkan ilmu yang didapat disertai dengan pernyataan yang ada. Pelaksaan pengembangan dapat dibagi menjadi 3 bagian besar.
+\begin{enumerate}
+    \item Tahap pre-\textit{development}
+    \item Tahap pengembangan atau \textit{development}
+    \item Tahap post-\textit{development}
+\end{enumerate}
+
+ \subsection{\textit{Pre-development}}
+ 
+\textit{Pre-development} dimulai dari membuat gambaran kasar dari aplikasi yang akan dibuat, konsiderasi dari fitur-fitur utama dan pendesignasian peran fitur utama tadi. Pendesainan antarmuka aplikasi, diikuti dengan pengembangan perangkat yang akan digunakan dalam pengembangan (dalam kasus kami sebuah website), serta menginisiasi proyek dengan menetapkan jadwal proyek, penentuan \textit{framework agile} yang digunakan, dan pada akhirnya \textit{kickoff meeting}, yang bertujuan untuk secara resmi memulai proyek.
+
+Pelacakan kemajuan dilaksanakan lewat \textit{platform} \textbf{GitLab} yang memuat tabel \textit{kanban} yang akan menjadi patokan umum kemajuan proyek dan juga sebagai media visibilitas antar tim.
+
+Prosedur pengerjaan juga diatur pada tahap ini yang di mana kami sepakat untuk melaksanakan \textit{daily meetup} untuk memitigasi terjadinya kesalah pahaman dan juga agar hasil pengerjaan terfokus.
+
+\subsubsection{\textit{Development}}
+
+Tahap pengembangan dimulai secara pararel, setiap \textit{learning path} langsung melakukan tugasnya masih-masing pada tahap awal, memulai pengembangan \textit{proof of concept} dari aplikasi yang akan digunakan dan pengumpulan (serta generasi) data. Tim \textbf{Android} melakukan pengembangan purwarupa dengan implementasi \textbf{Google Maps} pada laman utama aplikasi, disertai dengan pembuatan desain antarmuka. Tim \textit{cloud computing} melakukan pengembangan sistem autentikasi dengan \textbf{JWT}, situs web untuk purwarupa sistem, dan situs web marketing. Tim \textit{machine learning} melakukan pengumpulan data dan generasi data berdasarkan data yang telah diambil dan lalu melakukan \textit{clustering} untuk membuat model yang akan digunakan dalam \textit{ETL pipeline} pada sistem preventif.
+
+Tahap pengembangan awal ditandai dengan terwujudnya sistem reaktif \textit{overview} statistik, tidak ada masalah yang berarti untuk tahap awal. Tahap selanjutnya adalah tahap pelaksanaan routing, pada tahap ini terjadi masalah yang di mana \textit{routing engine} yang rencananya akan digunakan, hanya mendukung subversi rute berdasarkan \textit{polygon} tidak dapat (atau kami tidak tahu cara menyesuaikannya) agar bisa melakukan subversi dari radius \textit{geofence}. Sesuai dengan dokumen \textit{risk management} yang telah dibuat pada tahap \textit{pre-development} kami memutuskan untuk menggunakan sistem navigasi \textbf{Google Maps} untuk sementara. Selain itu pelaksanaan \textit{deployment} untuk fitur statistik dilakukan dalam \textbf{GCP}, penginisialisasian database, \textit{ETL pipeline}, dan komponen \textit{backend}. Sedangkan tim \textit{machine learning} melakukan riset untuk pembuatan fitur terakhir \textit{habit tracking}.
+
+Tahap pengembangan akhir sebelum tahap penyempurnaan adalah, \textit{habit tracker} banyak masalah yang dihadapi oleh tim pada tahap ini, mulai dari sistem \textit{parsing} yang tidak bekerja pada \textit{container} inferensi model \textit{habit tracker}, masalah pada \textit{broadcast} notifikasi daerah berbahaya yang dikaitkan dengan area yang berada dalam \textit{geofence}, komponen \textit{backend} yang tidak stabil, dan konsumsi data yang tidak dapat dilakukan oleh model yang telah dibuat. Berikut adalah langkah yang diambil untuk mengatasi masalah-masalah di atas:
+\begin{enumerate}
+    \item Masalah pada model \textit{habit tracker}, diselesaikan dengan implementasi manual menggunakan \textit{container} dan server web yang dibuat sendiri oleh tim, sehingga memberikan kebebasan dalam menentukan bagaimana data akan dikonsumsi oleh model untuk melakukan prediksi.
+    \item Pembuatan \textit{endpoint} alternatif untuk komponen \textit{backend} yang tidak stabil.
+    \item Sayangnya masih ada masalah pada sistem \textit{broadcast notifikasi}, sehingga mau tidak mau harus menerima kondisi ini.
+\end{enumerate}
+
+\subsection{\textit{Post-development}}
+
+Tahap pasca pengembangan dimulai dengan merapihkan dokumen kerja, pembuatan presentasi dan video yang akan menunjukkan aplikasi \textbf{Safe Route}. Setelah penilaian project dapat dikerjakan lagi jika tim berkenan.
+
+\section{Hasil Pengembangan Safe Route}
+
+Pengembangan aplikasi (beserta subkomponenya) yang memiliki tujuan utama untuk membuat kota-kota di Indonesia lebih aman dengan bantuan komunitas sehingga diharapkan angka kasus kriminalitas.
+
+Aplikasi ini terdiri dari tiga komponen besar yang merefleksikan masing-masing \textit{learning path} \textbf{Bangkit 2022}, selain keberhasilan pengembangan aplikasi jadi, pengembangan komponen \textit{cloud} yang mencakup \textit{backend, infrastruktur, database} dan web, pengembangan komponen \textit{machine learning} yang mendesain model secara keseluruhan.
